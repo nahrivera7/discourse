@@ -252,14 +252,6 @@ class PostSerializer < BasicPostSerializer
         summary.delete(:can_act)
       end
 
-      # The following only applies if you're logged in
-      if summary[:can_act] && scope.current_user.present?
-        summary[:can_defer_flags] = true if scope.is_staff? &&
-                                                   PostActionType.flag_types_without_custom.values.include?(id) &&
-                                                   active_flags.present? && active_flags.has_key?(id) &&
-                                                   active_flags[id] > 0
-      end
-
       if actions.present? && actions.has_key?(id)
         summary[:acted] = true
         summary[:can_undo] = true if scope.can_delete?(actions[id])

@@ -185,6 +185,7 @@ describe TopicViewSerializer do
       expect(details[:notification_level]).to be_present
       expect(details[:can_move_posts]).to eq(true)
       expect(details[:can_flag_topic]).to eq(true)
+      expect(details[:can_review_topic]).to eq(true)
       expect(details[:links][0][:clicks]).to eq(100)
 
       participant = details[:participants].find { |p| p[:id] == user.id }

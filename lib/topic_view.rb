@@ -15,7 +15,8 @@ class TopicView
     :print,
     :message_bus_last_id,
     :queued_posts_enabled,
-    :personal_message
+    :personal_message,
+    :can_review_topic
   )
 
   attr_accessor(
@@ -102,6 +103,7 @@ class TopicView
 
     @queued_posts_enabled = NewPostManager.queue_enabled?
     @personal_message = @topic.private_message?
+    @can_review_topic = @guardian.can_review_topic?(@topic)
   end
 
   def canonical_path
