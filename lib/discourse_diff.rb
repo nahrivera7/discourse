@@ -191,7 +191,7 @@ class DiscourseDiff
         if classes.include?("diff-#{klass}")
           html_or_text
         else
-          html_or_text.insert(index_of_class + "class=".length + 1, "diff-#{klass} ")
+          html_or_text.dup.insert(index_of_class + "class=".length + 1, "diff-#{klass} ")
         end
       end
     else
